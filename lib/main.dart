@@ -40,6 +40,8 @@ class _MyHomePageState extends State<MyHomePage> {
     _loadNotes();
   }
 
+  void _emptyFunction(){}
+
   void _loadNotes() async {
     final prefs = await SharedPreferences.getInstance();
     final notesJson = prefs.getStringList('notes');
@@ -172,11 +174,27 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _addNote,
-        tooltip: 'Add note',
-        child: const Icon(Icons.note_add),
-      ),
+      floatingActionButton:
+
+        Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            FloatingActionButton(
+              onPressed: _emptyFunction,
+              tooltip: 'Add list',
+              child: const Icon(Icons.checklist),
+            ),
+            SizedBox(height: 10),
+            FloatingActionButton(
+              onPressed: _addNote,
+              tooltip: 'Add note',
+              child: const Icon(Icons.note_add),
+            ),
+          ],
+        )
+
+
     );
   }
 }
